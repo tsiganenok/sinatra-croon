@@ -101,6 +101,18 @@ module Sinatra
               required = $1[0..0] == '<'
               name = $1[1..-2]
               parsed[:params] << { :name => name, :description => $2, :required => required }
+            when /\A#\s*@success_response\s+\<(.+?)\>\s+\[(.+?)\]\s+(.+)/ then
+              parsed[:success_responses] ||= []
+              code = $1
+              body = $2
+              desc = $3
+              parsed[:success_responses] << { :code => code, :body => body, :description => desc }
+            when /\A#\s*@failure_response\s+\<(.+?)\>\s+\[(.+?)\]\s+(.+)/ then
+              parsed[:failure_responses] ||= []
+              code = $1
+              body = $2
+              desc = $3
+              parsed[:failure_responses] << { :code => code, :body => body, :description => desc }
             when /\A#\s*@(\w+)\s*(.*)\Z/ then
               key = $1.to_sym
               parsed[key] ||= []
@@ -109,6 +121,7 @@ module Sinatra
               parsed[key] ||= []
               parsed[key]  << $1
           end
+          pp parsed
           parsed
         end.inject({}) do |flattened, (k, v)|
           case v.first

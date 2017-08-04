@@ -15,7 +15,7 @@
 
     %ul#sidebar
       - docs.keys.sort_by { |k| k.to_s }.each do |section|
-        %li          
+        %li
           %ul.section
             - docs[section].each do |doc|
               %li
@@ -23,7 +23,7 @@
                 = doc[:uri]
 
     #content
-      
+
 
       - docs[current_section].each do |doc|
 
@@ -48,8 +48,22 @@
                     .name= escape_html(param[:name])
                     .description= param[:description]
 
-            %code.request
-              = display_code doc[:request]
+            - if (doc[:request] || []).length > 0
+              %code.request
+                = display_code doc[:request]
 
-            %code.response
-              = display_code doc[:response]
+            - if (doc[:success_responses] || []).length > 0
+              .success_responses
+                - doc[:success_responses].each do |response|
+                  .response
+                    .code= response[:code]
+                    .body= response[:body]
+                    .description= response[:description]
+
+            - if (doc[:failure_responses] || []).length > 0
+              .failure_responses
+                - doc[:failure_responses].each do |response|
+                  .response
+                    .code= response[:code]
+                    .body= response[:body]
+                    .description= response[:description]
