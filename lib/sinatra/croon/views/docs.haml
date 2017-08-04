@@ -52,18 +52,10 @@
               %code.request
                 = display_code doc[:request]
 
-            - if (doc[:success_responses] || []).length > 0
-              .success_responses
-                - doc[:success_responses].each do |response|
+            - if (doc[:responses] || []).length > 0
+              .responses
+                - doc[:responses].each do |response|
                   .response
                     .code= response[:code]
-                    .body= response[:body]
-                    .description= response[:description]
-
-            - if (doc[:failure_responses] || []).length > 0
-              .failure_responses
-                - doc[:failure_responses].each do |response|
-                  .response
-                    .code= response[:code]
-                    .body= response[:body]
+                    .response_body= response[:response_body]
                     .description= response[:description]

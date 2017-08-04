@@ -108,13 +108,13 @@ ul#sidebar
       :content "Example Request"
       :font-family Helvetica, Arial, sans-serif
 
-  .failure_responses
+  .responses
     :margin-bottom 10px
     :padding 12px
     :display block
     &:before
       +code_title
-      :content "Failure Responses"
+      :content "Responses"
     .response
       :line-height 30px
       .code
@@ -122,35 +122,12 @@ ul#sidebar
         :font-weight bold
         :font-family monospace
         :font-size 1.2em
-      .body
-        :font-weight bold
-        :font-size 0.6em
-        :color #999
+      .response_body
         :display inline-block
-        :width 165px
-      .description
-        :display inline
-
-  .success_responses
-    :margin-bottom 10px
-    :padding 12px
-    :display block
-    &:before
-      +code_title
-      :content "Success Responses"
-    .response
-      :line-height 30px
-      .code
-        :display inline
-        :font-weight bold
         :font-family monospace
+        :font-style italic
         :font-size 1.2em
-      .body
-        :font-weight bold
-        :font-size 0.6em
-        :color #999
-        :display inline-block
-        :width 165px
+        :width 200px
       .description
         :display inline
 
