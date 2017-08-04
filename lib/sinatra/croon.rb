@@ -115,7 +115,6 @@ module Sinatra
               parsed[key] ||= []
               parsed[key]  << $1
           end
-          pp parsed
           parsed
         end.inject({}) do |flattened, (k, v)|
           case v.first
